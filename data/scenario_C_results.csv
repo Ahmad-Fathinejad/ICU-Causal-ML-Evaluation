@@ -1,0 +1,10 @@
+# Results for Scenario C: Calibration Evaluation
+# ------------------------------------------------------------------
+# Task: Calculate Average Predicted Probability and provide interpretations.
+# Input Values: CITL Bias=-0.1, Observed Rate=0.1
+# Date Generated: 2025-10-07 23:04:28
+# ------------------------------------------------------------------
+Metric,Result,Calculation/Interpretation Logic
+1. Calibration Slope,0.7,The ideal slope is 1.0. A slope of 0.70 (< 1.0) indicates **poor refinement** and **overly extreme predictions** (Over-fitting). The model is too confident in its predictions.
+2. Average Predicted Probability (Calculated),0.0,"Logic: Avg. Predicted Prob. = CITL Bias + Observed Rate. -0.1 + 0.1 = 0.00. A result of 0.0 means the model is perfectly calibrated *on average* (CITL=0), as the observed rate is also 0.1. *Note: This is an unusual outcome based on the given inputs.*"
+3. Clinical Implication (Slope 0.70),N/A,"For individual patients, the model overestimates high risks (e.g., predicting 80% when true risk is 60%) and underestimates low risks. This lack of reliability compromises clinical decision-making based on specific probabilities."
