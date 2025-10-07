@@ -1,3 +1,13 @@
+# generate_readme.py
+
+"""
+This script generates the final, structured README.md content for the 
+ICU-Causal-ML-Evaluation repository.
+"""
+import os
+
+# The entire README content structure in Markdown format
+README_CONTENT = """
 # ICU Causal Inference and Machine Learning Evaluation
 
 This repository houses the computational analysis for an advanced project in Healthcare Data Science, focusing on the evaluation of daily interventions and predictive model generalizability in Intensive Care Units (ICUs).
@@ -60,14 +70,14 @@ To calculate **Raw IPTW** and **Stabilized IPTW (SIPTW)** weights for a small co
 
 | Weight Type | Formula | Purpose |
 | :--- | :--- | :--- |
-| **Raw IPTW** | $IPTW = rac{1}{P(A|L)}$ | Creates a pseudo-population where treatment status ($A$) is independent of the measured covariates ($L$). |
-| **Stabilized IPTW**| $SIPTW = rac{P(A)}{P(A|L)}$ | Reduces the variance (instability) of the Raw IPTW by normalizing the weights by the marginal probability of treatment, $P(A)$. |
+| **Raw IPTW** | $IPTW = \frac{1}{P(A|L)}$ | Creates a pseudo-population where treatment status ($A$) is independent of the measured covariates ($L$). |
+| **Stabilized IPTW**| $SIPTW = \frac{P(A)}{P(A|L)}$ | Reduces the variance (instability) of the Raw IPTW by normalizing the weights by the marginal probability of treatment, $P(A)$. |
 
 ***Assumption:*** The marginal probability of treatment, $P(A=1)$, is assumed to be $0.5$.
 
 ### 3. Key Numerical Result and Interpretation
 
-The final sum of the Stabilized IPTW weights is a crucial check. If the weights are calculated correctly, this sum should ideally equal the total number of patients ($N$), or $N 	imes P(A)$ depending on the normalization.
+The final sum of the Stabilized IPTW weights is a crucial check. If the weights are calculated correctly, this sum should ideally equal the total number of patients ($N$), or $N \times P(A)$ depending on the normalization.
 
 | Metric | Result |
 | :--- | :--- |
@@ -80,17 +90,17 @@ The final sum of the Stabilized IPTW weights is a crucial check. If the weights 
 This scenario evaluates the **external validity** and **calibration** of a predictive model when deployed to a new, unseen hospital site (Hospital X), a core requirement for multi-center generalization.
 
 ### 1. Objective
-1.  Explain the clinical implication of the **Calibration Slope** ($	ext{0.70}$).
+1.  Explain the clinical implication of the **Calibration Slope** ($\text{0.70}$).
 2.  Calculate the **Average Predicted Probability** using the **CITL Bias** definition.
 
 ### 2. Calculation Logic
 
 The **Calibration-in-the-Large (CITL) Bias** is defined as:
-$$CITL = 	ext{Average Predicted Probability} - 	ext{Observed Rate}$$
+$$CITL = \text{Average Predicted Probability} - \text{Observed Rate}$$
 
-Given: $CITL = -0.10$ and $	ext{Observed Rate} = 0.1$
+Given: $CITL = -0.10$ and $\text{Observed Rate} = 0.1$
 
-$$	ext{Average Predicted Probability} = 	ext{CITL Bias} + 	ext{Observed Rate} = -0.10 + 0.1 = \mathbf{0.0}$$
+$$\text{Average Predicted Probability} = \text{CITL Bias} + \text{Observed Rate} = -0.10 + 0.1 = \mathbf{0.0}$$
 
 ### 3. Interpretation Summary
 
@@ -98,3 +108,20 @@ $$	ext{Average Predicted Probability} = 	ext{CITL Bias} + 	ext{Observed Rate} = 
 | :--- | :--- | :--- |
 | **Calibration Slope** | $\mathbf{0.70}$ | **Poor Refinement / Over-fitting:** A slope less than $1.0$ (ideal) indicates the model makes overly extreme predictions. It is **overconfident**, tending to overestimate high risks and underestimate low risks, making specific probability outputs unreliable for clinical use. |
 | **Avg. Predicted Probability** | $\mathbf{0.0}$ | **Calibration-in-the-Large is Perfect:** Since the calculated average predicted probability (0.0) is equal to the observed rate (0.1) minus the CITL bias (-0.10), the model is perfectly calibrated **on average**. *Note: The resulting value of 0.0 is unusual for clinical data, but follows the explicit formula provided.* |
+"""
+
+def generate_readme_file():
+    """Writes the predefined Markdown content to the README.md file."""
+    readme_path = 'README.md'
+    try:
+        # Open the file in write mode ('w'). This overwrites any existing content.
+        with open(readme_path, 'w', encoding='utf-8') as f:
+            f.write(README_CONTENT.strip())
+        print(f"✅ Successfully generated and updated: {readme_path}")
+        print("Please remember to run 'git add README.md' and 'git commit' to save these changes.")
+    except Exception as e:
+        print(f"❌ Error writing to {readme_path}: {e}")
+
+# Execute the script
+if __name__ == "__main__":
+    generate_readme_file()
