@@ -1,0 +1,14 @@
+# Results for Scenario A: Time-Series Imputation and TSLO Calculation
+# ------------------------------------------------------------------
+# Columns: Time (Hours), Imputed HR (using LOCF), TSLO (Time Since Last Observation).
+# Method: LOCF Imputation and direct TSLO calculation.
+# Date Generated: 2025-10-07 23:48:46
+# ------------------------------------------------------------------
+Time (Hours),Imputed HR,TSLO
+0.0,95.0,0.0
+1.0,98.0,0.0
+2.5,105.0,0.0
+3.0,102.0,0.0
+4.0,102.0,1.0
+5.0,99.0,0.0
+6.0,99.0,1.0
