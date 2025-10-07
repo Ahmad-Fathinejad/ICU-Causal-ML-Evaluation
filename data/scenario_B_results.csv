@@ -1,0 +1,12 @@
+# Results for Scenario B: IPTW and Stabilized IPTW Calculation
+# ------------------------------------------------------------------
+# Task: Calculate Raw IPTW, Stabilized IPTW, and the Sum of SIPTW.
+# ASSUMPTION: Marginal Probability P(A=1) = 0.5
+# Columns: Raw IPTW and Stabilized IPTW per patient.
+# Date Generated: 2025-10-07 22:40:33
+# ------------------------------------------------------------------
+Patient ID,A (Treatment),g (Propensity Score),Raw IPTW,Stabilized IPTW
+1,1,0.8000,1.2500,0.6250
+2,1,0.4000,2.5000,1.2500
+3,0,0.9000,10.0000,5.0000
+4,0,0.2000,1.2500,0.6250
